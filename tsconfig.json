@@ -3,7 +3,13 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
+<<<<<<< HEAD
       "@/*": ["./src/*"]
+=======
+      "@/*": [
+        "./src/*"
+      ]
+>>>>>>> 6bf7cc9 (criando arquivo principal)
     }
   },
   "include": [
