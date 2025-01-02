@@ -6,6 +6,7 @@ import { Clients } from "@/components/clients"
 import { Input } from "@/components/input"
 import { Avatar } from "@/components/avatar"
 import { MenuButton } from "@/components/menu-button"
+import { FloatButton } from "@/components/float-button"
 
 export default function Home() {
   return (
@@ -14,7 +15,7 @@ export default function Home() {
         <MenuButton />
         <Input.Field placeholder="Pesquisar clientes" />
         <Avatar 
-          source={{ uri: "https://github.com/davidwander.png" }} 
+          source={require("../../assets/logo.png")} 
           size="medium"
         />
       </Input>
@@ -33,6 +34,7 @@ export default function Home() {
           </Text>
         )}
       />
+      <FloatButton />
     </View>
 
 
