@@ -32,7 +32,7 @@ export default function DrawerLayout() {
         options={
           { 
             title: "Fluxo de caixa", 
-            iconName: "chat",
+            iconName: "currency-exchange",
             isDivider: true,
             notifications: 5,
           } as CustomOptions
@@ -44,7 +44,7 @@ export default function DrawerLayout() {
         options={
           { 
             title: "Registrar novo produto", 
-            iconName: "chat",
+            iconName: "add-shopping-cart",
             isDivider: true,
             notifications: 5,
           } as CustomOptions
@@ -56,7 +56,7 @@ export default function DrawerLayout() {
         options={
           { 
             title: "Cadastrar novo cliente", 
-            iconName: "chat",
+            iconName: "person-add",
             isDivider: true,
             notifications: 5,
           } as CustomOptions
@@ -64,11 +64,11 @@ export default function DrawerLayout() {
       />
 
       <Drawer.Screen 
-        name="list-client"
+        name="list-clients"
         options={
           { 
             title: "Lista de clientes", 
-            iconName: "chat",
+            iconName: "list-alt",
             isDivider: true,
             notifications: 5,
           } as CustomOptions
@@ -80,7 +80,7 @@ export default function DrawerLayout() {
         options={
           { 
             title: "Agenda", 
-            iconName: "chat",
+            iconName: "edit-square",
             isDivider: true,
             notifications: 5,
           } as CustomOptions
@@ -88,11 +88,11 @@ export default function DrawerLayout() {
       />
 
       <Drawer.Screen 
-        name="Programmed"
+        name="programmed"
         options={
           { 
             title: "Programação", 
-            iconName: "chat",
+            iconName: "edit-note",
             isDivider: true,
             notifications: 5,
           } as CustomOptions
@@ -104,7 +104,7 @@ export default function DrawerLayout() {
         options={
           { 
             title: "Saida de vendas", 
-            iconName: "chat",
+            iconName: "moving",
             isDivider: true,
             notifications: 5,
           } as CustomOptions
@@ -116,7 +116,7 @@ export default function DrawerLayout() {
         options={
           { 
             title: "configuração", 
-            iconName: "chat",
+            iconName: "tune",
             isDivider: true,
             notifications: 5,
           } as CustomOptions
