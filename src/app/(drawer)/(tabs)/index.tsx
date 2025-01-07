@@ -15,7 +15,7 @@ export default function Home() {
         <MenuButton />
         <Input.Field placeholder="Pesquisar clientes" />
         <Avatar 
-          source={require("../../../assets/logo.png")} 
+          source={require("../../../assets/logo.jpeg")} 
           size="medium"
         />
       </Input>

@@ -9,9 +9,8 @@ export function DrawerContent(drawerProps: DrawerContentComponentProps) {
     <View className="flex-1 bg-gray-600 overflow-hidden">
       <View className="mt-20 w-full border-b pb-6 border-gray-500">
         <Image 
-          source={require("@/assets/logo.png")}
-          className="w-28 h-20 ml-5"
-          resizeMode="contain"
+          source={require("@/assets/logo.jpeg")}
+          className="w-24 h-24 ml-5 rounded-2xl"
         />
       </View>
 
