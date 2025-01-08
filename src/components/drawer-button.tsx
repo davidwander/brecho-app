@@ -17,14 +17,14 @@ export function DrawerButton({ title, isFocused, isDivider, iconName, notificati
 
   return (
     <Pressable className={clsx("py-2 w-full " , {
-      "border-b ml-10 border-gray-500": isDivider,
+      "border-b border-gray-500": isDivider,
      })}
      {...rest}
     >
       <View
         className={clsx("flex-row items-center gap-4 h-14 px-6 -ml-2 w-full", {
           "-ml-14": isDivider,
-          "bg-orange-800 rounded-r-full": isFocused,
+          "bg-purple-500 rounded-r-full": isFocused,
         })}
       >
         <MaterialIcons 

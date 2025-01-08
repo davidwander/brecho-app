@@ -6,7 +6,6 @@ import { CustomOptions } from "@/types/navigation"
 export default function DrawerLayout() {
   return (
     <Drawer
-      defaultStatus="open"
       screenOptions={{
         headerShown: false,
         drawerStyle: {
