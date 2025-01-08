@@ -56,6 +56,7 @@ export default function CashFlow() {
       <FlatList
         data={transactions}
         keyExtractor={(item) => item.id}
+        showsVerticalScrollIndicator={false}
         renderItem={({ item }) => (
           <View
             className={`flex-row justify-between items-center p-3 mb-2 rounded-lg ${
