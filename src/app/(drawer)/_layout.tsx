@@ -99,7 +99,7 @@ export default function DrawerLayout() {
       />
 
       <Drawer.Screen 
-        name="sales-outlets"
+        name="dashboard"
         options={
           { 
             title: "Saida de vendas", 

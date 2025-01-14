@@ -12,6 +12,7 @@ import {
 } from "@expo-google-fonts/roboto"
 
 import { Loading } from "@/components/loading"
+import { CashFlowProvider } from "@/context/cashFlowContext"
 
 export default function Layout() {
   const [fontsLoaded] = useFonts({
@@ -26,8 +27,10 @@ export default function Layout() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <StatusBar style="light" />
-      <Slot />
+      <CashFlowProvider>
+        <StatusBar style="light" />
+        <Slot />
+      </CashFlowProvider>
     </GestureHandlerRootView>
   )
 }
