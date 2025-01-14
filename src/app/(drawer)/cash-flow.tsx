@@ -129,7 +129,14 @@ export default function CashFlow() {
           </View>
         )}
       />
-      <Button title="Adicionar Transação" onPress={handleAddTransaction} />
+      <TouchableOpacity 
+        className='w-full h-14 bg-cyan-600 rounded-xl justify-center mb-2'
+        onPress={handleAddTransaction}
+      >
+        <Text className='text-slate-300 text-center text-xl'>
+          Adicionar Transação
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 }
