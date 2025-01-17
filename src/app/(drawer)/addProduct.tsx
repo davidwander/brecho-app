@@ -2,7 +2,7 @@ import OpenDrawer from "@/components/open-drawer";
 import { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Alert, ScrollView } from "react-native";
 
-export default function RegisterProduct() {
+export default function AddProduct() {
   const [product, setProduct] = useState({
     name: "",
     price: "",

@@ -27,10 +27,10 @@ export default function DrawerLayout() {
       />
 
       <Drawer.Screen 
-        name="cash-flow"
+        name="inventory"
         options={
           { 
-            title: "Fluxo de caixa", 
+            title: "Estoque", 
             iconName: "currency-exchange",
             isDivider: true,
             notifications: 5,
@@ -39,7 +39,7 @@ export default function DrawerLayout() {
       />
 
       <Drawer.Screen 
-        name="register-product"
+        name="addProduct"
         options={
           { 
             title: "Registrar novo produto", 
@@ -102,7 +102,7 @@ export default function DrawerLayout() {
         name="dashboard"
         options={
           { 
-            title: "Saida de vendas", 
+            title: "Dashboard", 
             iconName: "moving",
             isDivider: true,
             notifications: 5,

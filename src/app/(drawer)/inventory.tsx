@@ -1,10 +1,10 @@
 import { View, Text } from "react-native";
 
-export default function Dashboard() {
+export default function Inventory() {
   return (
     <View>
       <Text>
-        Dashboard
+        Inventory Screen
       </Text>
     </View>
   )
