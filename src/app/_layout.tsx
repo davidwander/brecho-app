@@ -12,6 +12,7 @@ import {
 } from "@expo-google-fonts/roboto"
 
 import { Loading } from "@/components/loading"
+import { ProductProvider } from "@/context/ProductContext"
 
 
 export default function Layout() {
@@ -27,8 +28,10 @@ export default function Layout() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <StatusBar style="light" />
-      <Slot />
+      <ProductProvider>
+        <StatusBar style="light" />
+        <Slot />
+      </ProductProvider>
     </GestureHandlerRootView>
   )
 }

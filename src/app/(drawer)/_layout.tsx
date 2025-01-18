@@ -31,7 +31,7 @@ export default function DrawerLayout() {
         options={
           { 
             title: "Estoque", 
-            iconName: "currency-exchange",
+            iconName: "storefront",
             isDivider: true,
             notifications: 5,
           } as CustomOptions
@@ -43,7 +43,7 @@ export default function DrawerLayout() {
         options={
           { 
             title: "Registrar novo produto", 
-            iconName: "add-shopping-cart",
+            iconName: "playlist-add-check-circle",
             isDivider: true,
             notifications: 5,
           } as CustomOptions

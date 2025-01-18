@@ -1,35 +1,31 @@
 import { useState } from "react";
 import OpenDrawer from "@/components/open-drawer";
-import { 
-  View, 
-  Text, 
-  TextInput, 
-  TouchableOpacity, 
-  Alert
-} from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 
 import { api } from "@/server/api";
-import { isAxiosError  } from "axios";
+import { isAxiosError } from "axios";
+import { useProduct } from "@/context/ProductContext";
 
+export default function AddProduct() {
+  const [productName, setProductName] = useState("");
+  const { addProduct } = useProduct();
 
-export default function addProduct() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  async function handleAddProduct() {
+    if (!productName.trim()) {
+      return Alert.alert("Todos os campos devem ser preenchidos");
+    }
 
-  async function handleSignIn() {
     try {
-      const response = await api.post("/user", {
-        email,
-        password,
-      })
-
-      Alert.alert(`Olá ` + response.data.name)
+      const response = await api.post("/user", { name: productName });
+      addProduct(response.data); // Atualiza o contexto
+      Alert.alert(`Peça "${response.data.name}" adicionado com sucesso!`);
+      setProductName("");
     } catch (error) {
-      if(isAxiosError(error)){
-        return Alert.alert(error.response?.data)
+      if (isAxiosError(error)) {
+        return Alert.alert(error.response?.data || "Ocorreu um erro!");
       }
 
-      Alert.alert("Não foi possível entrar")
+      Alert.alert("Não é possível adicionar produto!");
     }
   }
 
@@ -37,24 +33,21 @@ export default function addProduct() {
     <View className="bg-gray-900 flex-1 justify-center p-4 gap-2">
       <OpenDrawer />
       <TextInput
-        placeholder="E-mail"
-        onChangeText={setEmail}
-        className="w-full h-16 bg-gray-700 rounded-lg"
-      />
-      <TextInput 
-        placeholder="Password"
-        secureTextEntry
-        onChangeText={setPassword}
-        className="w-full h-16 bg-gray-700 rounded-lg"
+        placeholder="Adicione a peça aqui..."
+        value={productName}
+        onChangeText={setProductName}
+        className="w-full h-16 bg-gray-700 rounded-lg p-4 text-white"
       />
       <TouchableOpacity
-        className="w-full h-16 rounded-full bg-cyan-600 justify-center items-center mt-64"
-        onPress={handleSignIn}
+        className="w-full h-16 rounded-full bg-cyan-600 justify-center items-center"
+        onPress={handleAddProduct}
       >
-        <Text className="text-white text-2xl">
-          Add Product
+        <Text 
+        className="text-white text-2xl"
+        >
+          Adicionar
         </Text>
       </TouchableOpacity>
     </View>
-  )
+  );
 }
