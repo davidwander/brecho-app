@@ -2,8 +2,6 @@ import { useState } from "react";
 import OpenDrawer from "@/components/open-drawer";
 import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 
-import { api } from "@/server/api";
-import { isAxiosError } from "axios";
 import { useProduct } from "@/context/ProductContext";
 
 export default function AddProduct() {
@@ -16,16 +14,12 @@ export default function AddProduct() {
     }
 
     try {
-      const response = await api.post("/user", { name: productName });
-      addProduct(response.data); // Atualiza o contexto
-      Alert.alert(`Peça "${response.data.name}" adicionado com sucesso!`);
-      setProductName("");
+      const newProduct = { id: Date.now(), name: productName }; // Gera ID local
+      addProduct(newProduct); // Atualiza o contexto
+      Alert.alert(`Peça "${productName}" adicionado com sucesso!`);
+      setProductName(""); // Limpa o campo
     } catch (error) {
-      if (isAxiosError(error)) {
-        return Alert.alert(error.response?.data || "Ocorreu um erro!");
-      }
-
-      Alert.alert("Não é possível adicionar produto!");
+      Alert.alert("Não foi possível adicionar o peça!");
     }
   }
 
@@ -42,11 +36,7 @@ export default function AddProduct() {
         className="w-full h-16 rounded-full bg-cyan-600 justify-center items-center"
         onPress={handleAddProduct}
       >
-        <Text 
-        className="text-white text-2xl"
-        >
-          Adicionar
-        </Text>
+        <Text className="text-white text-2xl">Adicionar</Text>
       </TouchableOpacity>
     </View>
   );

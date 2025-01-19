@@ -16,7 +16,11 @@ export function ProductProvider({ children }: { children: ReactNode }) {
   const [products, setProducts] = useState<Product[]>([]);
 
   function addProduct(product: Product) {
-    setProducts((prev) => [...prev, product]);
+    const newProduct = {
+      ...product,
+      id: product.id ?? Date.now(), // Gera um ID único
+    };
+    setProducts((prev) => [...prev, newProduct]);
   }
 
   return (
