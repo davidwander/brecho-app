@@ -27,23 +27,35 @@ export default function DrawerLayout() {
       />
 
       <Drawer.Screen 
-        name="inventory"
+        name="addProduct"
         options={
           { 
-            title: "Estoque", 
-            iconName: "storefront",
-            isDivider: true,
+            title: "Adicionar peça", 
+            iconName: "playlist-add-check-circle",
+            isDivider: false,
             notifications: 5,
           } as CustomOptions
         }
       />
 
       <Drawer.Screen 
-        name="addProduct"
+        name="inventory"
         options={
           { 
-            title: "Registrar novo produto", 
-            iconName: "playlist-add-check-circle",
+            title: "Estoque", 
+            iconName: "storefront",
+            isDivider: false,
+            notifications: 5,
+          } as CustomOptions
+        }
+      />
+
+      <Drawer.Screen 
+        name="dashboard"
+        options={
+          { 
+            title: "Dashboard", 
+            iconName: "moving",
             isDivider: true,
             notifications: 5,
           } as CustomOptions
@@ -92,18 +104,6 @@ export default function DrawerLayout() {
           { 
             title: "Programação", 
             iconName: "edit-note",
-            isDivider: true,
-            notifications: 5,
-          } as CustomOptions
-        }
-      />
-
-      <Drawer.Screen 
-        name="dashboard"
-        options={
-          { 
-            title: "Dashboard", 
-            iconName: "moving",
             isDivider: true,
             notifications: 5,
           } as CustomOptions

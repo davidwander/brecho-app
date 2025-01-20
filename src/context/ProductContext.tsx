@@ -3,11 +3,16 @@ import React, { createContext, useState, useContext, ReactNode } from "react";
 interface Product {
   id: number;
   name: string;
+  price: number;
+  profitMargin: number;
+  sellingPrice: number;
+  sold: boolean; // Novo campo para indicar se foi vendido
 }
 
 interface ProductContextData {
   products: Product[];
-  addProduct: (product: Product) => void;
+  addProduct: (product: Omit<Product, "id" | "sellingPrice" | "sold">) => void;
+  toggleProductSold: (id: number) => void; // Função para alternar o estado "vendido"
 }
 
 const ProductContext = createContext<ProductContextData | undefined>(undefined);
@@ -15,16 +20,30 @@ const ProductContext = createContext<ProductContextData | undefined>(undefined);
 export function ProductProvider({ children }: { children: ReactNode }) {
   const [products, setProducts] = useState<Product[]>([]);
 
-  function addProduct(product: Product) {
-    const newProduct = {
+  function addProduct(product: Omit<Product, "id" | "sellingPrice" | "sold">) {
+    const sellingPrice = product.price + (product.price * product.profitMargin) / 100;
+
+    const newProduct: Product = {
       ...product,
-      id: product.id ?? Date.now(), // Gera um ID único
+      id: Date.now(),
+      sellingPrice,
+      sold: false, // Definindo o produto como não vendido inicialmente
     };
+
     setProducts((prev) => [...prev, newProduct]);
   }
 
+  // Função para alternar o estado "vendido"
+  function toggleProductSold(id: number) {
+    setProducts((prev) =>
+      prev.map((product) =>
+        product.id === id ? { ...product, sold: !product.sold } : product
+      )
+    );
+  }
+
   return (
-    <ProductContext.Provider value={{ products, addProduct }}>
+    <ProductContext.Provider value={{ products, addProduct, toggleProductSold }}>
       {children}
     </ProductContext.Provider>
   );
