@@ -1,12 +1,12 @@
-import { View, FlatList, Text } from "react-native"
+// app/index.tsx
+import { View, FlatList, Text } from "react-native";
 
-import { CLIENTS } from "@/utils/clients"
-
-import { Clients } from "@/components/clients"
-import { Input } from "@/components/input"
-import { Avatar } from "@/components/avatar"
-import { MenuButton } from "@/components/menu-button"
-import { FloatButton } from "@/components/float-button"
+import { CLIENTS } from "@/utils/clients";
+import { Clients } from "@/components/clients";
+import { Input } from "@/components/input";
+import { Avatar } from "@/components/avatar";
+import { MenuButton } from "@/components/menu-button";
+import { FloatButton } from "@/components/float-button";
 
 export default function Home() {
   return (
@@ -14,15 +14,10 @@ export default function Home() {
       <Input>
         <MenuButton />
         <Input.Field placeholder="Pesquisar clientes" />
-        <Avatar 
-          source={require("../../../assets/logo.jpeg")} 
-          size="medium"
-        />
+        <Avatar source={require("../../../assets/logo.jpeg")} size="medium" />
       </Input>
 
-      
-
-      <FlatList 
+      <FlatList
         data={CLIENTS}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <Clients data={item} />}
@@ -36,7 +31,5 @@ export default function Home() {
       />
       <FloatButton />
     </View>
-
-
-  )
+  );
 }
