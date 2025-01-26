@@ -17,8 +17,8 @@ export default function TabLayout() {
           paddingTop: 14
         },
         tabBarShowLabel: false,
-        tabBarActiveTintColor: colors.orange[500],
-        tabBarInactiveTintColor: colors.gray[500],
+        tabBarActiveTintColor: colors.purple[300],
+        tabBarInactiveTintColor: colors.purple[300],
       }}
     >
       <Tabs.Screen 

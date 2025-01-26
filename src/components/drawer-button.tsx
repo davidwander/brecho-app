@@ -30,7 +30,7 @@ export function DrawerButton({ title, isFocused, isDivider, iconName, notificati
         <MaterialIcons 
           name={iconName} 
           size={28} 
-          color={isFocused ? colors.orange[300] : colors.orange[500]} 
+          color={isFocused ? colors.violet[200] : colors.purple[300]} 
         />
         <Text 
           className={clsx("text-white font-subtitle text-base", {
