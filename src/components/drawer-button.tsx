@@ -1,5 +1,6 @@
 import { colors } from "@/styles/colors";
 import { MaterialIcons } from "@expo/vector-icons";
+import { Icon } from "lucide-react-native";
 import { Pressable, PressableProps, View, Text } from "react-native";
 import clsx from "clsx";
 

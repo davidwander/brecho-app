@@ -1,8 +1,8 @@
 import { View, Text } from "react-native";
 import { Avatar } from "./avatar";
-import { MaterialIcons } from "@expo/vector-icons";
 import { colors } from "@/styles/colors";
 import { ClientsDataProps } from "@/utils/clients";
+import { MessageSquareText } from "lucide-react-native";
 
 type ClientsProps = {
   data: ClientsDataProps
@@ -15,9 +15,8 @@ export function Clients({ data }: ClientsProps) {
 
       <View className="flex-1">
         <View className="flex-row items-center gap-1">
-            <MaterialIcons 
-              name="label-important" 
-              size={16} 
+            <MessageSquareText
+              size={22} 
               color={colors.yellow[600]} 
             />
 

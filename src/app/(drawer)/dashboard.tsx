@@ -4,8 +4,8 @@ import { Picker } from '@react-native-picker/picker';
 import { PieChart, LineChart } from "react-native-chart-kit";
 import { useProduct } from "@/context/ProductContext";
 import OpenDrawer from "@/components/open-drawer";
-import { MaterialIcons, FontAwesome } from "@expo/vector-icons"; // Ícones para melhorar o visual
 import { useState } from "react";
+import { ChartColumnBig, CircleCheckBig, CircleDollarSign, DollarSign, ShoppingBag, ShoppingBasket } from "lucide-react-native";
 
 export default function Dashboard() {
   const { products } = useProduct();
@@ -66,8 +66,8 @@ export default function Dashboard() {
       <Text className="text-white text-2xl mb-4 pt-4">Dashboard</Text>
 
       {/* Notificações */}
-      <View className="bg-cyan-600 p-4 rounded-lg mb-4 flex-row items-center">
-        <MaterialIcons name="notifications" size={24} color="#FFFFFF" />
+      <View className="bg-cyan-600 p-4 rounded-lg mb-4 flex-row items-center gap-2">
+        <CircleCheckBig size={24} color="#FFFFFF" />
         <Text className="text-white ml-2">
           Você ultrapassou sua meta de vendas este mês!
         </Text>
@@ -94,17 +94,17 @@ export default function Dashboard() {
           <Text className="text-white text-lg mb-2">Métricas:</Text>
           <View className="flex-row justify-between">
             <View className="items-center">
-              <FontAwesome name="dollar" size={24} color="#36A2EB" />
+              <CircleDollarSign size={28} color="#36A2EB" />
               <Text className="text-white mt-2">Entradas:</Text>
               <Text className="text-white font-bold">R$ {totalSales.toFixed(2)}</Text>
             </View>
             <View className="items-center">
-              <FontAwesome name="shopping-cart" size={24} color="#FF6384" />
+              <ShoppingBag size={28} color="#FF6384" />
               <Text className="text-white mt-2">Saídas:</Text>
               <Text className="text-white font-bold">R$ {totalCost.toFixed(2)}</Text>
             </View>
             <View className="items-center">
-              <FontAwesome name="line-chart" size={24} color="#00C851" />
+              <ChartColumnBig size={28} color="#00C851" />
               <Text className="text-white mt-2">Lucro:</Text>
               <Text className="text-white font-bold">R$ {totalProfit.toFixed(2)}</Text>
             </View>

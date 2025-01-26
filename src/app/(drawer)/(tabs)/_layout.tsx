@@ -1,6 +1,6 @@
 import { colors } from "@/styles/colors";
-import { MaterialIcons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
+import { ChartScatter, House, MessageSquareText } from "lucide-react-native";
 
 export default function TabLayout() {
   return (
@@ -24,24 +24,24 @@ export default function TabLayout() {
       <Tabs.Screen 
         name="index"
         options={{
-          tabBarIcon: ({ size, color }) => (
-            <MaterialIcons name="home-filled" size={size} color={color}/>
+          tabBarIcon: ({ color }) => (
+            <House size={32} color={color}/>
           )
         }}
       />
       <Tabs.Screen 
         name="chat" 
         options={{
-          tabBarIcon: ({ size, color }) => (
-            <MaterialIcons name="chat" size={size} color={color}/>
+          tabBarIcon: ({ color }) => (
+            <MessageSquareText size={32} color={color}/>
           )
         }}
       />
       <Tabs.Screen 
         name="meeting" 
         options={{
-          tabBarIcon: ({ size, color }) => (
-            <MaterialIcons name="meeting-room" size={size} color={color}/>
+          tabBarIcon: ({ color }) => (
+            <ChartScatter size={32} color={color}/>
           )
         }}
       />

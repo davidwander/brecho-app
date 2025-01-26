@@ -1,8 +1,8 @@
 import { Pressable } from "react-native"
-import { MaterialIcons } from "@expo/vector-icons"
 import { colors } from "@/styles/colors"
 import { useNavigation } from "expo-router"
 import { DrawerActions } from "@react-navigation/native"
+import { ChartNoAxesGantt } from "lucide-react-native"
 
 export function MenuButton() {
   const navigation = useNavigation()
@@ -10,7 +10,7 @@ export function MenuButton() {
 
   return (
     <Pressable onPress={toggleMenu}>
-      <MaterialIcons name="menu" size={22} color={colors.white} />
+      <ChartNoAxesGantt size={35} color={colors.white} />
     </Pressable>
   )
 }
