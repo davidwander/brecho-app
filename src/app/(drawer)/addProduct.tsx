@@ -29,9 +29,13 @@ export default function AddProduct() {
   }
 
   return (
-    <View className="bg-gray-900 flex-1 justify-center p-4 gap-4">
+    <View className="bg-gray-900 flex-1 justify-center p-4 pt-2 gap-4">
       <OpenDrawer />
-      <Text className="text-3xl font-bold text-white">Adicionar Peça</Text>
+      <Text 
+        className="text-3xl font-bold text-white"
+      >
+        Adicionar Peça
+      </Text>
       <TextInput
         placeholder="Peça:"
         value={productName}

@@ -1,8 +1,10 @@
-import OpenDrawer from "@/components/open-drawer";
 import { useState } from "react";
+import OpenDrawer from "@/components/open-drawer";
 import { View, Text, TextInput, TouchableOpacity, Alert, Modal, FlatList } from "react-native";
-import { Calendar } from "react-native-calendars";
-import { format, parseISO } from "date-fns"; // Importando parseISO para garantir que a data seja interpretada corretamente
+import { Calendar, DateData } from "react-native-calendars";
+import "../../utils/localeCalendarConfig"; // Importação já ativa a tradução
+import { Feather } from "@expo/vector-icons";
+import { format, parseISO, isValid } from "date-fns";
 
 export default function Diary() {
   const [selectedDate, setSelectedDate] = useState<string>(new Date().toISOString().split("T")[0]);
@@ -10,7 +12,6 @@ export default function Diary() {
   const [currentNote, setCurrentNote] = useState("");
   const [showCalendar, setShowCalendar] = useState(false);
 
-  // Função para salvar as anotações
   const handleSave = () => {
     if (!currentNote.trim()) {
       Alert.alert("Erro", "A anotação está vazia. Por favor, escreva algo.");
@@ -26,47 +27,47 @@ export default function Diary() {
     Alert.alert("Sucesso", "Anotação salva!");
   };
 
-  // Função para deletar a anotação
   const handleDeleteNote = (index: number) => {
     setNotes((prevNotes) => {
       const updatedNotes = [...(prevNotes[selectedDate] || [])];
       updatedNotes.splice(index, 1);
-
       return {
         ...prevNotes,
         [selectedDate]: updatedNotes,
       };
     });
-
     Alert.alert("Sucesso", "Anotação removida!");
   };
 
-  // Função para selecionar a data no calendário
-  const handleDateSelect = (day: any) => {
-    setSelectedDate(day.dateString); // Atualiza a data selecionada
+  const handleDateSelect = (day: DateData) => {
+    setSelectedDate(day.dateString);
     setShowCalendar(false);
     setCurrentNote("");
   };
 
-  // Função para marcar as datas com anotações
   const getMarkedDates = () => {
+    if (!notes || typeof notes !== "object") return {};
+
     const marked: { [key: string]: any } = {};
+
     Object.keys(notes).forEach((date) => {
-      marked[date] = {
-        marked: true,
-        dotColor: "#4C9EFF",
-        ...(date === selectedDate && {
-          selected: true,
-          selectedColor: "#4C9EFF",
-          selectedTextColor: "white",
-        }),
-      };
+      if (notes[date]?.length > 0) {
+        marked[date] = {
+          marked: true,
+          dotColor: "#c236de",
+          ...(date === selectedDate && {
+            selected: true,
+            selectedColor: "#c236de",
+            selectedTextColor: "white",
+          }),
+        };
+      }
     });
 
     if (!marked[selectedDate]) {
       marked[selectedDate] = {
         selected: true,
-        selectedColor: "#4C9EFF",
+        selectedColor: "#c236de",
         selectedTextColor: "white",
       };
     }
@@ -79,41 +80,40 @@ export default function Diary() {
       <OpenDrawer />
       <Text className="text-white text-2xl font-bold mb-4 pt-4">Agenda</Text>
 
-      {/* Botão para abrir o calendário */}
       <TouchableOpacity
         onPress={() => setShowCalendar(true)}
         className="bg-blue-600 p-3 rounded-lg mb-4"
       >
         <Text className="text-white font-bold">
-          Selecionar Data: {format(parseISO(selectedDate), "dd/MM/yyyy")} {/* Exibindo a data no formato desejado */}
+          Selecionar Data: {isValid(parseISO(selectedDate)) ? format(parseISO(selectedDate), "dd/MM/yyyy") : ""}
         </Text>
       </TouchableOpacity>
 
-      {/* Modal com o Calendário Customizado */}
       <Modal visible={showCalendar} animationType="fade" transparent>
         <View className="flex-1 justify-center items-center bg-black/60">
-          <View className="bg-gray-800 p-6 rounded-lg w-11/12 shadow-lg">
+          <View className="bg-gray-800 p-2 rounded-lg w-11/12 shadow-lg">
             <Calendar
-              markedDates={getMarkedDates()}
-              onDayPress={(day: any) => handleDateSelect(day)} // Passando o objeto day para a função
+              style={{ backgroundColor: "transparent" }}
+              renderArrow={(direction: 'left' | 'right') => (
+                <Feather size={24} color="#e8e8e8" name={`chevron-${direction}`} />
+              )}
+              headerStyle={{ borderBottomWidth: 0.5, borderBottomColor: "#e8e8e8", paddingBottom: 10, marginBottom: 10 }}
               theme={{
-                selectedDayBackgroundColor: "#4C9EFF",
-                selectedDayTextColor: "#000",
-                todayTextColor: "#a1a1aa",
-                arrowColor: "#000",
-                monthTextColor: "#000",
-                textDayFontSize: 16,
                 textMonthFontSize: 18,
-                textMonthFontFamily: "Arial",
-                textDayHeaderFontSize: 16,
-                dotColor: "red",
-                textSectionTitleColor: "#000"
+                monthTextColor: "#e8e8e8",
+                todayTextColor: "#c236de",
+                selectedDayBackgroundColor: "#c236de",
+                selectedDayTextColor: "#e8e8e8",
+                arrowColor: "#e8e8e8",
+                calendarBackground: "transparent",
+                textDayStyle: { color: "#e8e8e8" },
+                textDisabledColor: "#717171",
+                arrowStyle: { margin: 0, padding: 0 },
               }}
-              style={{
-                borderRadius: 10,
-                padding: 10,
-                width: "100%",
-              }}
+              minDate={new Date().toISOString().split("T")[0]}
+              hideExtraDays
+              markedDates={getMarkedDates()}
+              onDayPress={handleDateSelect}
             />
             <TouchableOpacity
               onPress={() => setShowCalendar(false)}
@@ -125,9 +125,8 @@ export default function Diary() {
         </View>
       </Modal>
 
-      {/* Lista de Anotações */}
       <Text className="text-white text-lg font-bold mb-2">
-        Anotações para {format(parseISO(selectedDate), "dd 'de' MMMM 'de' yyyy")} {/* Data formatada */}
+        Anotações para {isValid(parseISO(selectedDate)) ? format(parseISO(selectedDate), "dd 'de' MMMM 'de' yyyy") : ""}
       </Text>
       <FlatList
         data={notes[selectedDate] || []}
@@ -143,12 +142,9 @@ export default function Diary() {
             </TouchableOpacity>
           </View>
         )}
-        ListEmptyComponent={
-          <Text className="text-gray-400">Nenhuma anotação para esta data.</Text>
-        }
+        ListEmptyComponent={<Text className="text-gray-400">Nenhuma anotação para esta data.</Text>}
       />
 
-      {/* Campo de Anotação */}
       <TextInput
         placeholder="Escreva sua anotação aqui..."
         placeholderTextColor="#aaa"
@@ -160,11 +156,7 @@ export default function Diary() {
         className="bg-gray-800 text-white p-4 rounded-lg mb-4"
       />
 
-      {/* Botão para Salvar */}
-      <TouchableOpacity
-        onPress={handleSave}
-        className="bg-green-600 p-4 rounded-lg items-center"
-      >
+      <TouchableOpacity onPress={handleSave} className="bg-green-600 p-4 rounded-lg items-center">
         <Text className="text-white font-bold">Adicionar Anotação</Text>
       </TouchableOpacity>
     </View>
