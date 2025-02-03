@@ -1,6 +1,6 @@
 import { useState } from "react";
 import OpenDrawer from "@/components/open-drawer";
-import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Alert, ImageBackground, SafeAreaView } from "react-native";
 import { useProduct } from "@/context/ProductContext";
 
 export default function AddProduct() {
@@ -29,39 +29,57 @@ export default function AddProduct() {
   }
 
   return (
-    <View className="bg-gray-900 flex-1 justify-center p-4 pt-2 gap-4">
-      <OpenDrawer />
-      <Text 
-        className="text-3xl font-bold text-white"
-      >
-        Adicionar Peça
-      </Text>
-      <TextInput
-        placeholder="Peça:"
-        value={productName}
-        onChangeText={setProductName}
-        className="w-full h-16 bg-gray-700 rounded-lg p-4 text-white"
-      />
-      <TextInput
-        placeholder="Preço de Custo (R$)"
-        value={productPrice}
-        onChangeText={setProductPrice}
-        keyboardType="numeric"
-        className="w-full h-16 bg-gray-700 rounded-lg p-4 text-white"
-      />
-      <TextInput
-        placeholder="Margem de Lucro (%)"
-        value={profitMargin}
-        onChangeText={setProfitMargin}
-        keyboardType="numeric"
-        className="w-full h-16 bg-gray-700 rounded-lg p-4 text-white"
-      />
-      <TouchableOpacity
-        className="w-full h-16 rounded-full bg-cyan-600 justify-center items-center"
-        onPress={handleAddProduct}
-      >
-        <Text className="text-white text-2xl">Adicionar</Text>
-      </TouchableOpacity>
-    </View>
+    <ImageBackground 
+      source={require("../../assets/bg.jpg")}
+      className="flex-1 bg-gray-900 p-4"
+    >
+      <SafeAreaView className="flex-1">
+        {/* OpenDrawer fixado no topo */}
+        <View className="absolute pt-14">
+          <OpenDrawer />
+        </View>
+
+        {/* Conteúdo centralizado */}
+        <View className="flex-1 justify-center gap-6">
+          <Text className="text-3xl font-bold text-white bg-gray-900 p-4 rounded-lg text-center">
+            Adicionar Peça
+          </Text>
+          
+          <TextInput
+            placeholder="Peça:"
+            placeholderTextColor="#fff"
+            value={productName}
+            onChangeText={setProductName}
+            className="w-full h-16 bg-gray-700 rounded-lg p-4 text-white"
+          />
+          <TextInput
+            placeholder="Preço de Custo (R$)"
+            placeholderTextColor="#fff"
+            value={productPrice}
+            onChangeText={setProductPrice}
+            keyboardType="numeric"
+            className="w-full h-16 bg-gray-700 rounded-lg p-4 text-white"
+          />
+          <TextInput
+            placeholder="Margem de Lucro (%)"
+            placeholderTextColor="#fff"
+            value={profitMargin}
+            onChangeText={setProfitMargin}
+            keyboardType="numeric"
+            className="w-full h-16 bg-gray-700 rounded-lg p-4 text-white"
+          />
+        </View>
+
+        {/* Botão fixo no rodapé */}
+        <View className="absolute bottom-5 left-0 right-0 px-4">
+          <TouchableOpacity
+            className="w-full h-16 rounded-full bg-cyan-600 justify-center items-center"
+            onPress={handleAddProduct}
+          >
+            <Text className="text-white text-2xl">Adicionar</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    </ImageBackground>
   );
 }
