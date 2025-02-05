@@ -13,7 +13,7 @@ export default function Home() {
       <Input>
         <MenuButton />
         <Input.Field placeholder="Pesquisar clientes" />
-        <Avatar source={require("../../../assets/logo.jpeg")} size="medium" />
+        <Avatar source={require("../../../assets/logoBV.jpeg")} size="medium" />
       </Input>
 
       <FlatList
