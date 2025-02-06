@@ -17,7 +17,7 @@ type DrawerButtonProps = PressableProps & {
 export function DrawerButton({ title, isFocused, isDivider, iconName, notifications, ...rest }: DrawerButtonProps) {
 
   return (
-    <Pressable className={clsx("py-2 w-full " , {
+    <Pressable className={clsx("h-14 w-full " , {
       "border-b border-gray-500": isDivider,
      })}
      {...rest}

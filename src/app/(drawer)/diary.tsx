@@ -142,7 +142,7 @@ export default function Diary() {
             </TouchableOpacity>
           </View>
         )}
-        ListEmptyComponent={<Text className="text-gray-400">Nenhuma anotação para esta data.</Text>}
+        ListEmptyComponent={<Text className="text-gray-400 h-8">Nenhuma anotação para esta data.</Text>}
       />
 
       <TextInput
